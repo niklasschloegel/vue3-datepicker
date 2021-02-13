@@ -15,6 +15,9 @@
       @focus="renderView(startingView)"
       @click="renderView(startingView)"
     />
+     <slot name="clear">
+        <i class="v3dp__clearable" v-show="clearable && modelValue" @click="clearModelValue()">&times;</i>
+      </slot>
     <year-picker
       v-show="viewShown === 'year'"
       v-model:pageDate="pageDate"
@@ -172,6 +175,14 @@ export default defineComponent({
       required: false,
       default: false,
     },
+    /**
+      * Clears selected date
+      */
+     clearable: {
+       type: Boolean,
+       required: false,
+       default: false
+     }
   },
   emits: {
     'update:modelValue': (value: Date | null | undefined) =>
@@ -217,6 +228,12 @@ export default defineComponent({
       viewShown.value = 'none'
     }
 
+     const clearModelValue = () => {
+        if (props.clearable) {
+          emit('update:modelValue', null)
+        }
+      }
+
     return {
       input,
       pageDate,
@@ -225,6 +242,7 @@ export default defineComponent({
       selectMonth,
       selectDay,
       viewShown,
+      clearModelValue,
       log: (e: any) => console.log(e),
     }
   },
@@ -260,4 +278,9 @@ export default defineComponent({
 
   position: relative;
 }
+.v3dp__clearable {
+   position: relative;
+   left: -15px;
+   cursor: pointer;
+ }
 </style>
