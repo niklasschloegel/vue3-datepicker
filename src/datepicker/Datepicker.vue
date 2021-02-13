@@ -249,9 +249,9 @@ export default defineComponent({
   --elem-color: var(--vdp-elem-color, currentColor);
   --elem-disabled-color: var(--vdp-disabled-color, #d5d9e0);
   --elem-hover-color: var(--vdp-hover-color, #fff);
-  --elem-hover-bg-color: var(--vdp-hover-bg-color, #0baf74);
+  --elem-hover-bg-color: var(--vdp-hover-bg-color, #7289da);
   --elem-selected-color: var(--vdp-selected-color, #fff);
-  --elem-selected-bg-color: var(--vdp-selected-bg-color, #0baf74);
+  --elem-selected-bg-color: var(--vdp-selected-bg-color, #7289da);
 
   --elem-font-size: var(--vdp-elem-font-size, 0.8em);
   --elem-border-radius: var(--vdp-elem-border-radius, 3px);
