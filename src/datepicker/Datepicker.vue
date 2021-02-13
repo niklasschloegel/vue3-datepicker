@@ -15,9 +15,9 @@
       @focus="renderView(startingView)"
       @click="renderView(startingView)"
     />
-     <slot name="clear">
+    <slot name="clear">
         <i class="v3dp__clearable" v-show="clearable && modelValue" @click="clearModelValue()">&times;</i>
-      </slot>
+    </slot>
     <year-picker
       v-show="viewShown === 'year'"
       v-model:pageDate="pageDate"
@@ -279,8 +279,6 @@ export default defineComponent({
   position: relative;
 }
 .v3dp__clearable {
-   position: relative;
-   left: -15px;
    cursor: pointer;
  }
 </style>
