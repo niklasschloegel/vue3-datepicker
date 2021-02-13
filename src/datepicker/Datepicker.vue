@@ -1,10 +1,8 @@
 <template>
   <div class="v3dp__datepicker">
-    <label for="input" class="filter">{{label}}
-       <slot name="clear">
-        <i class="v3dp__clearable" v-show="clearable && modelValue" @click="clearModelValue()">&times;</i>
-    </slot>
-    </label>
+    <div>
+    <label for="input" class="filter">{{label}}</label>
+    
     <input
       id="input"
       type="text"
@@ -19,6 +17,10 @@
       @focus="renderView(startingView)"
       @click="renderView(startingView)"
     />
+     <slot name="clear">
+        <i class="v3dp__clearable" v-show="clearable && dateInput && modelValue" @click="clearModelValue()">&times;</i>
+      </slot>
+    </div>
     <year-picker
       v-show="viewShown === 'year'"
       v-model:pageDate="pageDate"
@@ -192,7 +194,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const viewShown = ref('none' as 'year' | 'month' | 'day' | 'none')
     const pageDate = ref<Date>(new Date())
-
+    const dateInput = ref(false);
     const input = ref('')
     watchEffect(() => {
       const parsed = parse(input.value, props.inputFormat, new Date())
@@ -213,8 +215,13 @@ export default defineComponent({
       if (!props.disabled) viewShown.value = view
     }
     watchEffect(() => {
+      if (isValid(props.modelValue)) dateInput.value = true
+    })
+
+     watchEffect(() => {
       if (props.disabled) viewShown.value = 'none'
     })
+
     const selectYear = (date: Date) => {
       pageDate.value = date
       viewShown.value = 'month'
@@ -244,6 +251,7 @@ export default defineComponent({
       selectDay,
       viewShown,
       clearModelValue,
+      dateInput,
       log: (e: any) => console.log(e),
     }
   },
@@ -280,6 +288,10 @@ export default defineComponent({
   position: relative;
 }
 .v3dp__clearable {
+   position: absolute;
+   left: 95px;
+   top: 18px;
+   font-size: 15px;
    cursor: pointer;
  }
 </style>
