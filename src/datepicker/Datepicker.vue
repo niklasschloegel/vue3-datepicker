@@ -280,5 +280,7 @@ export default defineComponent({
 }
 .v3dp__clearable {
    cursor: pointer;
+   padding-top:-2px;
+   padding-right: 2px;
  }
 </style>
