@@ -1,8 +1,11 @@
 <template>
   <div class="v3dp__datepicker">
+    <label for="input" class="filter">{{label}}</label>
     <input
+      id="input"
       type="text"
       readonly="readonly"
+      class="input-special"
       v-model="input"
       v-bind="$attrs"
       :placeholder="placeholder"
@@ -63,7 +66,10 @@ export default defineComponent({
   },
   inheritAttrs: false,
   props: {
-    placeholder: {
+    label: {
+      type: String,
+      default: ''
+    },    placeholder: {
       type: String,
       default: '',
     },

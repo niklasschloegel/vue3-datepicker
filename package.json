@@ -61,10 +61,11 @@
     "vue": "^3.0.5"
   },
   "peerDependencies": {
-    "vue": "^3.0.0",
-    "date-fns": "^2.16.1"
+    "date-fns": "^2.16.1",
+    "vue": "^3.0.0"
   },
   "dependencies": {
+    "bootstrap": "^4.6.0",
     "date-fns": "^2.16.1"
   }
 }
