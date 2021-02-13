@@ -1,6 +1,10 @@
 <template>
   <div class="v3dp__datepicker">
-    <label for="input" class="filter">{{label}}</label>
+    <label for="input" class="filter">{{label}}
+       <slot name="clear">
+        <i class="v3dp__clearable" v-show="clearable && modelValue" @click="clearModelValue()">&times;</i>
+    </slot>
+    </label>
     <input
       id="input"
       type="text"
@@ -15,9 +19,6 @@
       @focus="renderView(startingView)"
       @click="renderView(startingView)"
     />
-    <slot name="clear">
-        <i class="v3dp__clearable" v-show="clearable && modelValue" @click="clearModelValue()">&times;</i>
-    </slot>
     <year-picker
       v-show="viewShown === 'year'"
       v-model:pageDate="pageDate"
@@ -280,7 +281,5 @@ export default defineComponent({
 }
 .v3dp__clearable {
    cursor: pointer;
-   padding-top:-2px;
-   padding-right: 2px;
  }
 </style>
